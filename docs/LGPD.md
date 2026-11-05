@@ -1,19 +1,21 @@
 # LGPD: como o protótipo trata dados pessoais
 
+> Este documento descreve o protótipo em `legacy/prototype`. Ele será revisto na Fase 3, com o novo modelo de dados (CPF, data de nascimento e login sem senha). O modelo novo está em [PLAN.md](PLAN.md).
+
 > **Este documento é um apoio técnico, não um parecer jurídico.** Bases legais, prazos e textos precisam de validação por profissional especializado antes do lançamento. Os dados do controlador e do encarregado são provisórios.
 
 ## Papéis
 
 | Papel | Quem | Situação |
 | --- | --- | --- |
-| Controlador (art. 5º, VI) | A empresa dona do app | `[a definir]` em `server/privacyMap.ts` |
+| Controlador (art. 5º, VI) | A empresa dona do app | `[a definir]` em `legacy/prototype/server/privacyMap.ts` |
 | Encarregado (art. 41) | Pessoa ou empresa nomeada | `[a nomear]`, com e-mail provisório |
 | Operadores (art. 5º, VII) | Hospedagem, provedor de e-mail e outros fornecedores | Nenhum no protótipo. Exigem contrato de tratamento. O provedor de e-mail recebe o endereço e o conteúdo das mensagens, inclusive os códigos |
 | Empresas contratantes | Recebem dados do freelancer depois da confirmação | **Ponto para o jurídico:** provavelmente controladoras independentes desses dados. Os termos devem limitar o uso a combinar o turno |
 
 ## Mapa de dados (art. 37)
 
-A fonte oficial é `server/privacyMap.ts`, a mesma exibida no app.
+A fonte oficial é `legacy/prototype/server/privacyMap.ts`, a mesma exibida no app.
 
 | Dados | Finalidade | Base legal proposta | Retenção |
 | --- | --- | --- | --- |
@@ -90,7 +92,7 @@ Nenhuma decisão que afete a pessoa é automatizada: quem escolhe é a empresa. 
 
 ## Segurança (art. 46) e privacidade desde a concepção (art. 46, § 2º)
 
-Veja [SEGURANCA.md](SEGURANCA.md).
+Veja [SEGURANCA.md](../legacy/prototype/docs/SEGURANCA.md).
 
 ## Incidentes (art. 48)
 

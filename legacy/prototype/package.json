@@ -1,15 +1,15 @@
 {
-  "name": "escala",
+  "name": "@escala/prototype",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Protótipo: hub que conecta freelancers de eventos e hospitalidade a empresas.",
+  "description": "Protótipo web mantido como referência até a Fase 9.",
   "engines": {
     "node": ">=24"
   },
   "scripts": {
     "build": "vite build client",
-    "start": "npm run build && node --disable-warning=ExperimentalWarning server/index.ts",
+    "start": "vite build client && node --disable-warning=ExperimentalWarning server/index.ts",
     "dev:server": "node --disable-warning=ExperimentalWarning --watch server/index.ts",
     "dev:client": "vite client",
     "test": "node --disable-warning=ExperimentalWarning --test --test-force-exit --test-timeout=60000 server/test/*.test.ts",
@@ -26,7 +26,7 @@
     "nodemailer": "10.3.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "zod": "4.6.7"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@types/express": "5.0.6",
@@ -35,7 +35,7 @@
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",
     "@vitejs/plugin-react": "6.2.1",
-    "typescript": "7.0.2",
+    "typescript": "catalog:",
     "vite": "8.3.5"
   }
 }

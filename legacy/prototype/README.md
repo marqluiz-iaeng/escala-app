@@ -1,4 +1,6 @@
-# Escala (nome provisório)
+# Protótipo web do Escala
+
+> Mantido só como referência até a Fase 9 do [plano](../../docs/PLAN.md). O produto novo fica em `apps/` e `packages/`.
 
 Protótipo de um hub que conecta **freelancers** (bartenders, garçons, atendentes, músicos, recepcionistas e outras funções de festas e eventos) a **empresas** (produtoras musicais, festas e entretenimento, bares e restaurantes, hostels e pousadas).
 
@@ -8,12 +10,14 @@ Foi feito para validar o produto e a abordagem de privacidade. **Ainda não est�
 
 Requer Node 24 ou superior.
 
+Na raiz do monorepo:
+
 ```bash
-npm install
+corepack pnpm install
 ```
 
 ```bash
-npm start
+corepack pnpm --filter @escala/prototype start
 ```
 
 Abra <http://localhost:4173> e use os botões de demonstração na tela inicial. As chaves locais e os dados fictícios são criados na primeira execução.
@@ -76,4 +80,4 @@ Em ordem de prioridade:
 6. **Segurança e moderação**: segundo fator de autenticação, denúncia de vagas e perfis, e bloqueio de usuários.
 7. **Produto**: notificações, pagamentos e apps nativos, se a validação justificar.
 
-Detalhes em [docs/SEGURANCA.md](docs/SEGURANCA.md) e [docs/LGPD.md](docs/LGPD.md).
+Detalhes em [docs/SEGURANCA.md](docs/SEGURANCA.md) e [docs/LGPD.md](../../docs/LGPD.md).
