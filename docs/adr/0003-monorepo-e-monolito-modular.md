@@ -21,5 +21,5 @@ São muitos domínios (identidade, vagas, contratos, chat, reputação, suporte)
 ## Consequências
 
 - A execução direta de TypeScript pelo Node, usada hoje, não atende aos decorators do NestJS. A API passa a ter etapa de build.
-- A compatibilidade dos decorators com o TypeScript 7 não foi confirmada. Validar no início da Fase 1. A alternativa é fixar a versão anterior e compilar com SWC.
+- A versão do TypeScript foi definida na Fase 1 ([ADR-0009](0009-typescript-6-eslint-e-validacao-propria.md)).
 - Regras de fronteira entre módulos serão verificadas por lint.
