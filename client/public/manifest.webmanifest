@@ -1,0 +1,11 @@
+{
+  "name": "Escala",
+  "short_name": "Escala",
+  "description": "Turnos para quem faz o evento acontecer.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5EFE3",
+  "theme_color": "#1E1430",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

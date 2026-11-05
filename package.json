@@ -1,0 +1,41 @@
+{
+  "name": "escala",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Protótipo: hub que conecta freelancers de eventos e hospitalidade a empresas.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "build": "vite build client",
+    "start": "npm run build && node --disable-warning=ExperimentalWarning server/index.ts",
+    "dev:server": "node --disable-warning=ExperimentalWarning --watch server/index.ts",
+    "dev:client": "vite client",
+    "test": "node --disable-warning=ExperimentalWarning --test --test-force-exit --test-timeout=60000 server/test/*.test.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p client/tsconfig.json",
+    "reset": "node -e \"for (const f of ['data/escala.db','data/escala.db-wal','data/escala.db-shm']) require('fs').rmSync(f,{force:true})\""
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "5.3.0",
+    "@fontsource-variable/instrument-sans": "5.3.0",
+    "express": "5.3.0",
+    "express-rate-limit": "8.7.3",
+    "helmet": "8.3.0",
+    "lucide-react": "1.68.0",
+    "nodemailer": "10.3.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.6",
+    "@types/node": "26.6.6",
+    "@types/nodemailer": "8.0.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.2.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.5"
+  }
+}
