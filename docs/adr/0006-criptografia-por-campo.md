@@ -1,6 +1,6 @@
 # ADR-0006: Criptografia por campo com chave em KMS
 
-**Status:** proposta.
+**Status:** aceita.
 
 ## Contexto
 

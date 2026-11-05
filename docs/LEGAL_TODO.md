@@ -43,3 +43,4 @@ Lista para revisão por advogado antes do lançamento público. Nada aqui é par
 - [ ] Modelo de negócio (decisão D1): se houver cobrança dentro do app, rever regras da Apple e do Google e obrigações fiscais.
 - [ ] Moderação de avaliações e comentários: responsabilidade por conteúdo de terceiros.
 - [ ] Botão de emergência: redação clara do que ele faz e do que não faz.
+- [ ] Pessoa banida que exclui a conta: é possível reter o índice do CPF para impedir a volta, com base em legítimo interesse ou prevenção à fraude? Hoje a exclusão apaga esse índice.

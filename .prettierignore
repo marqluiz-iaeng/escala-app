@@ -9,3 +9,5 @@ docs/PROMPT_ESCALA.md
 docs/LGPD.md
 apps/mobile/assets/
 apps/mobile/tsconfig.json
+docs/DATA_DICTIONARY.md
+apps/api/src/db/generated/

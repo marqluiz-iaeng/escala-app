@@ -15,6 +15,10 @@
     "test": {
       "dependsOn": ["^build"]
     },
+    "test:db": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
     "dev": {
       "dependsOn": ["^build"],
       "cache": false,

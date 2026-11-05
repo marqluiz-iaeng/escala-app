@@ -20,7 +20,10 @@
     "test": "turbo run test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "prettier --check . && turbo run lint typecheck test build"
+    "verify": "prettier --check . && turbo run lint typecheck test build && turbo run test:db",
+    "test:db": "turbo run test:db",
+    "db:setup": "pnpm --filter @escala/api db:bootstrap && pnpm --filter @escala/api db:migrate",
+    "db:seed": "pnpm --filter @escala/api db:seed"
   },
   "devDependencies": {
     "@eslint/js": "catalog:",
