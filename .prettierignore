@@ -1,0 +1,11 @@
+dist/
+coverage/
+.turbo/
+.expo/
+node_modules/
+pnpm-lock.yaml
+legacy/
+docs/PROMPT_ESCALA.md
+docs/LGPD.md
+apps/mobile/assets/
+apps/mobile/tsconfig.json

@@ -1,6 +1,21 @@
 node_modules/
-client/dist/
-data/
-.env
-.DS_Store
+dist/
+coverage/
+.turbo/
+*.tsbuildinfo
 *.log
+.DS_Store
+
+# Segredos: só os arquivos de exemplo entram no repositório.
+.env
+.env.*
+!.env.example
+
+# App Expo: pastas nativas são geradas pelo prebuild.
+.expo/
+apps/mobile/ios/
+apps/mobile/android/
+apps/mobile/expo-env.d.ts
+
+# Protótipo
+legacy/prototype/data/
