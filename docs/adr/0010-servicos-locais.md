@@ -18,5 +18,6 @@ O plano previa `postgis/postgis` e MinIO. Ao fixar as versões, encontrei dois p
 ## Consequências
 
 - Em produção, o plano continua sendo PostgreSQL gerenciado e S3 ([decisão D5](../PLAN.md)).
-- A imagem de PostgreSQL de desenvolvimento vem de um namespace pessoal. Conferir o PostGIS real nos testes de integração da Fase 2.
+- A imagem de PostgreSQL de desenvolvimento vem de um namespace pessoal. O PostGIS real foi conferido nos testes de integração da Fase 2.
+- A imagem instala o PostGIS e outras extensões no esquema `public` do banco que ela cria, e isso conflita com a instalação em `extensions`. Por isso, no Compose esse banco é só o `postgres`, de administração. O banco do app é criado a partir do `template0` pelo `pnpm db:setup`, e o bootstrap falha com uma mensagem clara se encontrar o PostGIS em outro esquema.
 - O código de arquivos usa a interface S3, então trocar o SeaweedFS não afeta a aplicação.

@@ -1,6 +1,6 @@
 # Plano do Escala: fundação completa
 
-**Status:** plano aprovado em 04/11/2026. Fase 1 concluída.
+**Status:** plano aprovado em 04/11/2026. Fases 1 e 2 concluídas. O esquema real, sempre atualizado, fica em [DATA_DICTIONARY.md](DATA_DICTIONARY.md).
 **Base:** [PROMPT_ESCALA.md](PROMPT_ESCALA.md), com a alteração de escopo da seção 2.
 **Versões e fontes:** verificadas em 04/11/2026 (seção 16).
 
@@ -277,13 +277,17 @@ erDiagram
   users ||--o{ company_members : "participa de"
   companies ||--|{ company_members : "tem"
   companies ||--o{ company_verifications : "passa por"
+  companies ||--o| company_private_details : "tem"
   files ||--o{ companies : "logo"
-  companies {
-    uuid id PK
-    text trade_name
+  company_private_details {
+    uuid company_id PK, FK
     text legal_name_enc
     text cnpj_index UK "HMAC"
     text cnpj_enc
+  }
+  companies {
+    uuid id PK
+    text trade_name
     enum segment
     text about
     uuid logo_file_id FK
@@ -475,17 +479,21 @@ erDiagram
     uuid job_id FK
     uuid company_id FK
     uuid freelancer_id FK
+    uuid company_contact_user_id FK "quem responde pela empresa"
     uuid terms_document_id FK
     bigint agreed_amount_cents "só registro, nada é cobrado"
     text currency
     enum pay_unit
     enum status
     enum cancelled_by "company, freelancer, platform"
+    enum no_show_party "company, freelancer, platform"
     timestamptz accepted_at
     timestamptz contact_visible_until
     date payment_due_on
     timestamptz company_marked_paid_at
     timestamptz freelancer_confirmed_paid_at
+    timestamptz company_confirmed_at
+    timestamptz freelancer_confirmed_at
     timestamptz completed_at
   }
   shifts {
@@ -820,6 +828,7 @@ stateDiagram-v2
   proposed --> accepted: freelancer aceita os termos
   proposed --> declined: freelancer recusa
   proposed --> expired: prazo vence
+  proposed --> cancelled: empresa desiste
   accepted --> in_progress: primeiro check-in
   accepted --> cancelled: uma das partes cancela
   accepted --> no_show: falta sem aviso
@@ -832,6 +841,8 @@ stateDiagram-v2
   disputed --> completed: decisão
   disputed --> cancelled: decisão
   disputed --> no_show: decisão
+  disputed --> in_progress: disputa retirada
+  disputed --> awaiting_confirmation: disputa retirada
   completed --> [*]
   declined --> [*]
   expired --> [*]
@@ -874,7 +885,7 @@ Toda tabela usa `FORCE ROW LEVEL SECURITY`, e o papel da aplicação não tem `B
 | `check_ins`              | Freelancer                       | Empresa do contrato                                           | Não                        | Em disputa, com auditoria                |
 | `audit_logs`             | Vê os acessos aos próprios dados |                                                               | Não                        | Só admin. Ninguém altera                 |
 
-**Papéis de banco:** `escala_migrator` (dono do esquema), `escala_app` (API), `escala_worker` (tarefas), `escala_support` (painel) e `escala_analytics` (somente visões sem dados pessoais).
+**Papéis de banco:** `escala_migrator` (dono do esquema), `escala_app` (API), `escala_auth` (login, [ADR-0011](adr/0011-papel-de-banco-para-o-login.md)), `escala_worker` (tarefas), `escala_support` (painel) e `escala_analytics` (somente visões sem dados pessoais).
 
 ### 6.6 Criptografia, retenção e índices
 

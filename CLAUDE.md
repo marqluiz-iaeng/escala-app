@@ -39,12 +39,14 @@ pnpm install
 pnpm setup:env
 pnpm verify
 pnpm services:up
+pnpm db:setup
+pnpm db:seed
 pnpm dev:api
 pnpm dev:mobile
 pnpm --filter @escala/mobile web
 ```
 
-`pnpm verify` roda formatação, lint, typecheck, testes e build. Sem pnpm instalado, use `npx pnpm@12.16.1`. Não use Corepack ([ADR-0009](docs/adr/0009-typescript-6-eslint-e-validacao-propria.md)).
+`pnpm verify` roda formatação, lint, typecheck, testes, testes de banco e build. Os testes de banco (`pnpm test:db`) exigem o Docker ligado. Sem pnpm instalado, use `npx pnpm@12.16.1`. Não use Corepack ([ADR-0009](docs/adr/0009-typescript-6-eslint-e-validacao-propria.md)).
 
 ## Convenções
 
@@ -52,3 +54,6 @@ pnpm --filter @escala/mobile web
 - A API é ESM: imports relativos terminam em `.js`.
 - Na API, não use `import type` em dependências injetadas: o NestJS precisa do tipo em tempo de execução.
 - Textos do produto e da documentação em português do Brasil, em linguagem simples.
+- Banco: migrações em SQL em `apps/api/db/migrations`, sempre com `Up` e `Down`. Toda tabela nova precisa de RLS, política, permissão por coluna e comentário. Depois de alterar o esquema, rode `pnpm --filter @escala/api db:dictionary` e `db:pull`, que geram o dicionário e os tipos do Drizzle.
+- Testes de banco usam os papéis reais (`escala_app` etc.), nunca o dono das tabelas, que ignora a RLS.
+- Toda consulta de requisição passa por `withUser`, que define a pessoa logada só para aquela transação.

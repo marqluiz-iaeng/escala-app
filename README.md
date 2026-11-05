@@ -50,6 +50,9 @@ pnpm services:up
 | `pnpm dev:mobile`    | Servidor de desenvolvimento do Expo                   |
 | `pnpm services:up`   | Sobe os serviços locais                               |
 | `pnpm services:down` | Para os serviços locais                               |
+| `pnpm db:setup`      | Cria os papéis do banco e aplica as migrações         |
+| `pnpm db:seed`       | Cria os dados fictícios de demonstração               |
+| `pnpm test:db`       | Testes de banco, em um PostgreSQL real (exige Docker) |
 
 ## Estrutura
 

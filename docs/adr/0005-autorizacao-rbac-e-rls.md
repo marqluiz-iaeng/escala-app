@@ -1,6 +1,6 @@
 # ADR-0005: Autorização em duas camadas, RBAC e RLS
 
-**Status:** proposta.
+**Status:** aceita.
 
 ## Contexto
 
@@ -11,7 +11,7 @@ O prompt pede autorização checada em todo endpoint e RLS no banco. A API usar�
 1. **API:** guards verificam papel e posse do objeto em todo endpoint.
 2. **Banco:** `FORCE ROW LEVEL SECURITY` em todas as tabelas com dados de usuário, e padrão de negar.
 3. **Contexto:** cada requisição roda em transação com `set_config('app.user_id', $1, true)`. O escopo da transação limpa o valor ao final, inclusive com pool.
-4. **Papéis de banco separados:** `escala_migrator`, `escala_app`, `escala_worker`, `escala_support` e `escala_analytics`. Nenhum papel de aplicação tem `BYPASSRLS`.
+4. **Papéis de banco separados:** `escala_migrator`, `escala_app`, `escala_auth` ([ADR-0011](0011-papel-de-banco-para-o-login.md)), `escala_worker`, `escala_support` e `escala_analytics`. Nenhum papel de aplicação tem `BYPASSRLS`.
 5. **Dados entre partes:** contato e endereço só por funções `SECURITY DEFINER` específicas, que validam o contrato vigente e gravam auditoria.
 
 ## Consequências
@@ -21,3 +21,5 @@ O prompt pede autorização checada em todo endpoint e RLS no banco. A API usar�
 - Toda coluna usada em política recebe índice.
 - Testes de autorização rodam com o papel real `escala_app`, nunca com o dono das tabelas, que ignoraria parte das regras.
 - Funções `SECURITY DEFINER` definem `search_path` fixo.
+- Colunas que definem confiança, como status, selo de verificação, geocerca e datas de confirmação, ficam fora das permissões de `INSERT` e `UPDATE`. RLS decide quais linhas, e a permissão por coluna decide o que pode mudar nelas.
+- Quem pode ler um arquivo depende de onde ele é usado, então um gatilho exige que só o dono do arquivo possa vinculá-lo. Sem isso, apontar para o arquivo de outra pessoa daria acesso a ele.

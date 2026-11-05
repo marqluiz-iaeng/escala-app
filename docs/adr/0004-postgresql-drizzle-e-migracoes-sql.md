@@ -1,6 +1,6 @@
 # ADR-0004: PostgreSQL 18, Drizzle e migrações em SQL
 
-**Status:** proposta.
+**Status:** aceita.
 
 ## Contexto
 
@@ -21,7 +21,8 @@ O prompt exige RLS, PostGIS, UUID v7, migrações versionadas e, como critério 
 ## Consequências
 
 - Duas definições do esquema, SQL e TypeScript, mantidas em sincronia pelo teste de divergência.
-- O guia do Drizzle cobre `geometry`, não `geography`. Colunas `geography` usarão tipo personalizado, a validar na Fase 2.
+- O `drizzle-kit pull` não reconhece `geography`, domínios nem `tsvector`, e escreve o texto vazio padrão de um jeito que não compila. O `db:pull` corrige isso com os tipos de `src/db/column-types.ts`, e falha se aparecer um tipo novo sem mapeamento. Validado na Fase 2.
+- O teste de divergência compara as tabelas e colunas do esquema gerado com o catálogo do banco.
 - O Drizzle ainda está em versão 0.x. O acesso a dados fica isolado para limitar o impacto de mudanças.
-- Os testes usam PostgreSQL real em contêiner, então o Docker precisa estar ligado. Ele está instalado, mas parado hoje.
+- Os testes usam PostgreSQL real em contêiner, então o Docker precisa estar ligado. O banco de teste roda em memória (`tmpfs`): é mais rápido e não ocupa disco a cada execução.
 - A disponibilidade do PostgreSQL 18 em `sa-east-1` ainda precisa ser confirmada na Fase 10.
