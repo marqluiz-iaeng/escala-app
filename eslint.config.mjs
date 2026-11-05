@@ -13,6 +13,7 @@ export default tseslint.config(
       '**/node_modules/**',
       'legacy/**',
       'apps/mobile/expo-env.d.ts',
+      'apps/api/src/db/generated/**',
     ],
   },
   js.configs.recommended,

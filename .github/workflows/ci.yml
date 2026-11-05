@@ -35,6 +35,8 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
+      # Sobe um PostgreSQL real com Testcontainers. O Docker já vem no ubuntu-24.04.
+      - run: pnpm test:db
       - run: pnpm build
 
   bundles-mobile:

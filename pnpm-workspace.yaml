@@ -21,6 +21,11 @@ allowBuilds:
   # Telemetria de instalação, trazida pelo swagger-ui. Fica bloqueada.
   '@scarf/scarf': false
   unrs-resolver: true
+  # Trazidos pelo Testcontainers. Os dois primeiros só aceleram SSH, que não usamos.
+  cpu-features: false
+  ssh2: false
+  # O script só avisa sobre versões antigas do Node.
+  protobufjs: false
 
 minimumReleaseAgeExclude:
   - lucide-react@1.68.0
