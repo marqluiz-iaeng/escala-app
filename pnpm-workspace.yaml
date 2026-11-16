@@ -6,7 +6,7 @@ packages:
 # Versões compartilhadas ficam aqui, para o monorepo inteiro usar a mesma.
 catalog:
   '@eslint/js': 10.0.1
-  '@types/node': 24.10.1
+  '@types/node': 26.6.6
   eslint: 10.14.0
   eslint-config-prettier: 10.1.8
   typescript: 6.0.3
